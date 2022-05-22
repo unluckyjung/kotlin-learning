@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.6.10"
+    kotlin("jvm") version "1.6.0"
     application
 }
 
@@ -13,6 +13,8 @@ repositories {
 }
 
 dependencies {
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
+
     testImplementation(kotlin("test"))
     testImplementation("org.junit.jupiter:junit-jupiter-params:5.8.2")
     testImplementation("io.kotest:kotest-runner-junit5:5.2.3")
