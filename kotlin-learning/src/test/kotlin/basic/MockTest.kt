@@ -1,10 +1,7 @@
 package basic
 
 import io.kotest.matchers.shouldBe
-import io.mockk.every
-import io.mockk.mockk
-import io.mockk.mockkObject
-import io.mockk.mockkStatic
+import io.mockk.*
 import org.junit.jupiter.api.Test
 import java.time.Year
 import java.time.ZoneId
@@ -22,6 +19,17 @@ class MockTest {
         } returns "hello test"
 
         member.greet() shouldBe "hello test"
+    }
+
+    @Test
+    fun spykJunit() {
+        val member = spyk(Member("jys"))
+        every {
+            member.greet()
+        } returns "hello spyk"
+
+        member.greet() shouldBe "hello spyk"
+        member.hate() shouldBe "get out"
     }
 
     @Test
@@ -56,6 +64,10 @@ class Member(
 ) {
     fun greet(): String {
         return "hello my name is $name"
+    }
+
+    fun hate(): String {
+        return "get out"
     }
 
     companion object {
