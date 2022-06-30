@@ -35,6 +35,13 @@ class ExceptionTest {
             throw CustomException()
         }.shouldHaveMessage("커스텀 예외입니다.")
     }
+
+    @Test
+    fun customExceptionTest3() {
+        assertThrows<IllegalArgumentException> {
+            throw CustomException()
+        }.shouldHaveMessage("커스텀 예외입니다.")
+    }
 }
 
 class MemberName(val name: String) {
