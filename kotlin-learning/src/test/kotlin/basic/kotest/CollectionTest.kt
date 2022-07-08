@@ -1,4 +1,4 @@
-package basic
+package basic.kotest
 
 import io.kotest.matchers.collections.*
 import org.junit.jupiter.api.Test

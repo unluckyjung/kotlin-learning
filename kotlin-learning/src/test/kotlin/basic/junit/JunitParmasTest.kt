@@ -1,4 +1,4 @@
-package basic
+package basic.junit
 
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.params.ParameterizedTest

@@ -1,4 +1,4 @@
-package basic
+package basic.kotest
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
