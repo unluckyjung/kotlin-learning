@@ -57,6 +57,39 @@ class MockTest {
 
         ZonedDateTime.now() shouldBe mockedNow
     }
+
+    @Test
+    fun relaxedTest() {
+        val member = mockk<Member>(relaxed = true)
+
+        member.hate() shouldBe ""
+    }
+
+    @Test
+    fun verifyTest() {
+        val member = mockk<Member>()
+
+        every {
+            member.printHello(any())
+        } just runs
+
+        val helloCount = 2
+        for (i in 1..helloCount) {
+            member.printHello(i.toString())
+        }
+
+        verify(exactly = 1) {
+            member.printHello("1")
+        }
+
+        verify(exactly = 1) {
+            member.printHello("2")
+        }
+
+        verify(exactly = 2) {
+            member.printHello(any())
+        }
+    }
 }
 
 class Member(
@@ -68,6 +101,10 @@ class Member(
 
     fun hate(): String {
         return "get out"
+    }
+
+    fun printHello(name: String) {
+        println("hello $name")
     }
 
     companion object {
