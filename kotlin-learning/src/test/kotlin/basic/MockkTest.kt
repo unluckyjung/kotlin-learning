@@ -69,9 +69,14 @@ class MockTest {
     fun verifyTest() {
         val member = mockk<Member>()
 
-        every {
+//        every {
+//            member.printHello(any())
+//        } just runs
+
+        // every 와 동일
+        justRun {
             member.printHello(any())
-        } just runs
+        }
 
         val helloCount = 2
         for (i in 1..helloCount) {
