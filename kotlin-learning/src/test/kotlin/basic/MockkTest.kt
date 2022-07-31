@@ -95,6 +95,15 @@ class MockTest {
             member.printHello(any())
         }
     }
+
+    @Test
+    fun mockkDITest() {
+        val dummy = mockk<Dummy>(relaxed = true)
+        val team1 = Team("myteam", dummy = dummy)
+
+        // 바로 mockk(relaxed = true) 로 의존 객체를 넣어줄 수 있다.
+        val team2 = Team("myteam", dummy = mockk(relaxed = true))
+    }
 }
 
 class Member(
@@ -116,5 +125,23 @@ class Member(
         fun hello(): String {
             return "hello member"
         }
+    }
+}
+
+data class Dummy(
+    val property1: String
+)
+
+
+class Team(
+    val name: String,
+    val dummy: Dummy,
+    members: List<Member> = listOf()
+) {
+    var members = members
+        private set
+
+    fun addMember(member: Member) {
+        members = members.plus(member)
     }
 }
