@@ -4,7 +4,7 @@ Learn about
 [collection ordering](https://kotlinlang.org/docs/collection-ordering.html)
 and the
 [the difference](https://kotlinlang.org/docs/collection-operations.html#write-operations)
-between operations in-place on mutable collections and operations returning new collections. 
+between operations in-place on mutable effective and operations returning new effective. 
 
 Implement a function for returning the list of customers,
 sorted in descending order by the number of orders they have made. 

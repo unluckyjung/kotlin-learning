@@ -1,4 +1,4 @@
-package collections
+package effective
 
 fun main() {
     numbers1()

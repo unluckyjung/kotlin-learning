@@ -1,6 +1,6 @@
 ## Getting used to the new style
 
-We can rewrite and simplify the following code using lambdas and operations on collections.
+We can rewrite and simplify the following code using lambdas and operations on effective.
 Fill in the gaps in `doSomethingWithCollection`, 
 the simplified version of the `doSomethingWithCollectionOldStyle` function, 
 so that its behavior stays the same and isn't modified in any way.
