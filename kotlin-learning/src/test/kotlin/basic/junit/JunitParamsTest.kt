@@ -1,13 +1,11 @@
 package basic.junit
 
+import basic.syntax.common.enums.WHETHER
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.Arguments
-import org.junit.jupiter.params.provider.CsvSource
-import org.junit.jupiter.params.provider.MethodSource
-import org.junit.jupiter.params.provider.ValueSource
+import org.junit.jupiter.params.provider.*
 
 
 class JunitParamsTest {
@@ -29,6 +27,19 @@ class JunitParamsTest {
     fun memberCompareTest(member1: Member, member2: Member) {
         member1 shouldBe member2
     }
+
+    @ParameterizedTest
+    @EnumSource(value = WHETHER::class, names = ["SPRING"])
+    fun enumTest1(whether: WHETHER) {
+        whether shouldBe WHETHER.SPRING
+    }
+
+    @ParameterizedTest
+    @EnumSource(value = WHETHER::class, names = ["SUMMER"], mode = EnumSource.Mode.EXCLUDE)
+    fun enumTest2(whether: WHETHER) {
+        whether.isHot(whether) shouldBe false
+    }
+
 
     companion object {
         @JvmStatic
