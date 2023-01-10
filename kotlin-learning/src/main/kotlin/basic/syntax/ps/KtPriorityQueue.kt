@@ -1,9 +1,16 @@
 package basic.syntax.ps
 
 import java.util.*
+import kotlin.Comparator
 
 class KtPriorityQueue {
 
+}
+
+fun main() {
+    basicHeap()
+    maxHeap()
+    minHeap()
 }
 
 data class Man(
@@ -29,9 +36,21 @@ data class Man(
 //    }
 }
 
-fun main() {
-    maxHeap()
-    minHeap()
+private fun basicHeap() {
+    val pq = PriorityQueue<Int>()
+    pq.add(10)
+    pq.add(30)
+    pq.add(20)
+    println(pq.remove())    // 10
+    println(pq.element())   // 20
+
+    val pq2 = PriorityQueue<Int>(Comparator.reverseOrder())
+    pq2.add(10)
+    pq2.add(30)
+    pq2.add(20)
+
+    println(pq.remove())    // 30
+    println(pq.element())   // 20
 }
 
 private fun maxHeap() {
