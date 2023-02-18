@@ -5,9 +5,36 @@ import java.util.*
 fun main() {
     stackBasic()
     listBasic()
+    listIterator()
 }
 
-private fun listBasic() {
+fun listBasic() {
+    val list: LinkedList<Int> = LinkedList()
+    list.add(1) // [1]
+    list.add(3) // [1, 3]
+    list.add(index = 1, element = 2) // [1, 2, 3]
+
+    list.remove(element = 1) // [2, 3]
+    list.remove(element = 3) // [2]
+    println(list.remove(-1)) // false
+
+    list.add(0, 10) //  [10, 2]
+    list.add(2, 3) //  [10, 2, 3]
+    list.add(2, 4) //  [10, 2, 4, 3]
+
+    println(list.first) // 10
+    println(list.last) // 3
+    println(list[2]) // 4
+
+    // 원하는 값(2)의 인덱스를 찾은뒤 삭제하는경우
+
+    // [10, 2, 4, 3]
+    val targetIndex = list.indexOf(2) // 1;
+    list.removeAt(targetIndex)
+    println(list)   // [10, 4, 3]
+}
+
+private fun listIterator() {
     val list = LinkedList<Int>().apply {
         addAll(mutableListOf(10, 20, 30))
     }
