@@ -1,10 +1,17 @@
 package fast_io
 
 import java.io.BufferedReader
+import java.io.FileInputStream
 import java.io.InputStreamReader
+import java.nio.file.Paths
 import java.util.*
 
-fun main() {
+fun main(){
+    val path = Paths.get("")
+    val dirPath = path.toAbsolutePath().toString()
+    //    val dirPath = System.getProperty("user.dir")  // 위와 동일하게 경로를 얻어냄.
+    System.setIn(FileInputStream("$dirPath/kotlin-learning/src/main/kotlin/fast_io/input.txt"))
+
     val count = readln().toInt()
     val sb = StringBuilder()
 
