@@ -23,6 +23,21 @@ class JunitParamsTest {
     }
 
     @ParameterizedTest
+    @CsvSource(",5")
+    fun csvNullTest(str: String?, num: Int) {
+        str shouldBe null
+        num shouldBe 5
+    }
+
+    @ParameterizedTest
+    @CsvSource("'',5")
+    fun emptyStringTest(str: String, num: Int) {
+        str shouldBe ""
+        num shouldBe 5
+    }
+
+
+    @ParameterizedTest
     @MethodSource("memberCompareTest")  // "memberCompareTest" 생략가능
     fun memberCompareTest(member1: Member, member2: Member) {
         member1 shouldBe member2
