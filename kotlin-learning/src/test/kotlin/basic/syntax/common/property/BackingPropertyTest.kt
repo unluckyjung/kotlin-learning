@@ -4,6 +4,7 @@ import io.kotest.assertions.throwables.shouldThrowExactly
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
 class BackingMember(
@@ -13,7 +14,7 @@ class BackingMember(
         get() {
             return field.ifBlank { "defaultName" }
         }
-        set(name: String) {
+        set(name) {
             field = "new $name"
         }
 
@@ -41,6 +42,7 @@ class BackingNumbers(
     var numbers: MutableList<Int>
 ) {
     val sum = calculate()
+    val referenceSumTest = numbers.sum()
 
     private fun calculate(): Int {
         CALL_COUNTER++
@@ -83,6 +85,7 @@ class BackingPropertyTest {
     }
 
 
+    @DisplayName("Backing Field 를 사용하지 않고, 프로퍼티 이름을 사용하면 무한참조가 일어나 스택오브펄로우가 발생한다.")
     @Test
     fun backingFieldTest4() {
         val name = "yoonsung"
@@ -94,6 +97,7 @@ class BackingPropertyTest {
     }
 
 
+    @DisplayName("프로퍼티 값 설정후, 조회를 여러번해도 연결된 함수는 1회만 동작한다.")
     @Test
     fun backingFieldTes5() {
         BackingMember.CALL_COUNTER shouldBe 0
@@ -128,7 +132,6 @@ class BackingPropertyTest {
         BackingNumbers.CALL_COUNTER shouldBe 1
 
         numbers.numbers = mutableListOf(1, 10)
-        numbers.numbers.add(100)
 
         // numbers 가 바뀌었어도 프로퍼티값은 변하지 않음.
         numbers.sum shouldNotBe 1
@@ -148,8 +151,8 @@ class BackingPropertyTest {
 
         numbers.numbers.add(100)
 
-        // numbers 가 바뀌었어도 프로퍼티값은 변하지 않음.
-        numbers.sum shouldNotBe 1
+        // numbers 안의 데이터들이 바뀌었어도 프로퍼티값은 변하지 않음.
+        numbers.sum shouldNotBe 106
         numbers.sum shouldBe 6
 
         BackingNumbers.CALL_COUNTER shouldBe 1
