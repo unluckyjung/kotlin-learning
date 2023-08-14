@@ -17,3 +17,12 @@ class KtGenericMap<T>(
         return map[key] ?: throw IllegalArgumentException()
     }
 }
+
+class GenericClass<T, K>(
+    val a: T,
+    val b: K,
+) {
+    fun <T : Number> genericSum(num1: T, num2: T): T {
+        return (num1.toInt() + num2.toInt()) as T
+    }
+}
