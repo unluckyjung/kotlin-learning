@@ -3,12 +3,12 @@ package basic.syntax.ps
 import java.util.*
 
 fun main() {
-    stackBasic()
-    listBasic()
+    linkedListBasic()
     listIterator()
+    listMutableIterator()
 }
 
-fun listBasic() {
+fun linkedListBasic() {
     val list: LinkedList<Int> = LinkedList()
     list.add(1) // [1]
     list.add(3) // [1, 3]
@@ -35,9 +35,7 @@ fun listBasic() {
 }
 
 private fun listIterator() {
-    val list = LinkedList<Int>().apply {
-        addAll(mutableListOf(10, 20, 30))
-    }
+    val list = LinkedList(listOf(10, 20, 30))
 
     val iter = list.iterator()
     while (iter.hasNext()) {
@@ -85,25 +83,33 @@ private fun listIterator() {
     println()
 }
 
-private fun stackBasic() {
-    val s = Stack<Int>()
-    s.push(10) // [10]
-    s.push(20) // [10, 20]
-
-    println(s.peek())   // (20)
-
-    println(s.firstElement()) // (10)
-    println(s.first())  // (10)
-
-    println(s.lastElement()) // (20)
-    println(s.last())   //(20)
-
-    println(s.pop())    // print 20, [10]
-    println(s.size) // 1
-
-    println(s.pop())    // print 10, []
-
-    if (s.isEmpty()) {
-        println("empty") // "empty"
+private fun listMutableIterator() {
+    val list = LinkedList<Int>().apply {
+        addAll(mutableListOf(10, 20, 30, 40, 50))
     }
+
+    val iter = list.listIterator()  // [^,10,20,30,40,50]
+
+    println(iter.next()) // 10, [10,^,20,30,40,50]
+    iter.remove()   // remove 는 iterator 가 마지막으로 반환한 얘를 지운다. 즉, next, previous 호출전에 remove 호출시 에러발생
+    println(list)   // [^,20,30,40,50]
+
+    iter.next() // [20,^,30,40,50]
+    iter.next() // [20,30,^,40,50]
+
+    iter.add(35)  // [20,30,35,^,40,50]
+    println(list)
+    println(iter.previous()) // 35 [20,30,^,35,40,50]
+    iter.remove() // [20,30,^,40,50]
+    println(list)
+
+    iter.previous() // [20,^,30,40,50]
+    iter.previous() // [^,20,30,40,50]
+    iter.remove()
+    println(list) // [^,30,40,50]
+
+    iter.next() // [30,^,40,50]
+    iter.next() // [30,40,^,50]
+    iter.remove()
+    println(list) // [30,50]
 }
