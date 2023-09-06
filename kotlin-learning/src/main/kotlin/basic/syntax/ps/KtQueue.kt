@@ -1,11 +1,13 @@
 package basic.syntax.ps
 
 import java.util.*
+import kotlin.collections.ArrayDeque
 
 
 fun main() {
     queue()
     deque()
+    arrayDeque()
 }
 
 private fun deque() {
@@ -20,6 +22,20 @@ private fun deque() {
     dq.removeFirst() // [20,30]
     println(dq.first)   // 20
 }
+
+private fun arrayDeque() {
+    val dq = ArrayDeque<Int>()
+    dq.add(20) // [20]
+    dq.addFirst(10) // [10,20]
+    dq.addLast(30) // [10,20,30]
+
+    println(dq.first())   // 10
+    println(dq.last())    // 30
+
+    dq.removeFirst() // [20,30]
+    println(dq.first())   // 20
+}
+
 
 private fun queue() {
     val q: Queue<Int> = LinkedList()
