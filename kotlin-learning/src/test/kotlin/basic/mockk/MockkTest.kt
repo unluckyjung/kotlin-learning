@@ -1,4 +1,4 @@
-package basic
+package basic.mockk
 
 import io.kotest.matchers.shouldBe
 import io.mockk.*
